@@ -15,28 +15,19 @@ import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Space extends AbstractUUIDEntity {
+public class Project extends AbstractUUIDEntity {
 
     @Column(nullable = false)
     private String name;
 
-    private String color;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private User owner;
-
     @ManyToOne
-    private Workspace workspace;
-
-    @Column(nullable = false)
-    private String initialLetter;
-
-    @ManyToOne
-    private Icon icon;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Attachment avatar;
+    private Space space;
 
     @Column(nullable = false)
     private String accessType;
+
+    @Column(nullable = false)
+    private boolean archived;
+
+    private String color;
 }

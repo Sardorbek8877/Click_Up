@@ -2,7 +2,6 @@ package uz.bek.click_up.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,28 +14,19 @@ import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Space extends AbstractUUIDEntity {
+public class Category extends AbstractUUIDEntity {
 
     @Column(nullable = false)
     private String name;
 
-    private String color;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private User owner;
-
     @ManyToOne
-    private Workspace workspace;
-
-    @Column(nullable = false)
-    private String initialLetter;
-
-    @ManyToOne
-    private Icon icon;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Attachment avatar;
+    private Project project;
 
     @Column(nullable = false)
     private String accessType;
+
+    @Column(nullable = false)
+    private boolean archived;
+
+    private String color;
 }
