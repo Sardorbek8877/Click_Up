@@ -2,6 +2,7 @@ package uz.bek.click_up.entity.template;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,28 +12,12 @@ import uz.bek.click_up.entity.User;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class AbstractUUIDEntity {
+public abstract class AbstractUUIDEntity extends AbstractMainEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
-
-//    @Column(updatable = false, nullable = false)
-//    @CreationTimestamp
-//    private Timestamp createdAt;
-//
-//    @Column(nullable = false)
-//    @UpdateTimestamp
-//    private Timestamp updatedAt;
-//
-//    @CreatedBy
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(updatable = false)
-//    private User createdBy;
-//
-//    @LastModifiedBy
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private User updatedBy;
 }
