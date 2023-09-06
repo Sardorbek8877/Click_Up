@@ -1,13 +1,13 @@
 package uz.bek.click_up.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import uz.bek.click_up.entity.enums.WorkspacePermissionName;
+import uz.bek.click_up.entity.template.AbstractLongEntity;
 import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,10 +15,11 @@ import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class WorkspacePermission extends AbstractUUIDEntity {
+public class ClickApps extends AbstractLongEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private WorkspaceRole workspaceRole; //O'RINBOSAR
+    @Column(nullable = false)
+    private String name;
 
-    private WorkspacePermissionName permissionName; //addMember, REMOVE MEMBER
+    @ManyToOne
+    private Icon icon;
 }
