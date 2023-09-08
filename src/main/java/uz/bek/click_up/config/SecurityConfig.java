@@ -64,8 +64,8 @@ public class SecurityConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("sardorbeksafarov8844@gmail.com");
-        mailSender.setPassword("Gibridgoogle8877");
+        mailSender.setUsername("");
+        mailSender.setPassword("");
         Properties properties = mailSender.getJavaMailProperties();
         properties.put("mail.transport.protocol", "smtp");
         properties.put("mail.smtp.auth", "true");
