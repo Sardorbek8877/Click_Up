@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import uz.bek.click_up.entity.template.AbstractLongEntity;
+import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 
 import java.sql.Timestamp;
 
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TaskHistory extends AbstractLongEntity {
+public class TaskHistory extends AbstractUUIDEntity {
 
     @ManyToOne
     private Task task;
@@ -26,5 +27,5 @@ public class TaskHistory extends AbstractLongEntity {
 
     private boolean after;
 
-    private Object data;
+    private String data;
 }

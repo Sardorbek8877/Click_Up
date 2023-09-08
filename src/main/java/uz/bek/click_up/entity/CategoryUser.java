@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import uz.bek.click_up.entity.enums.TaskPermissions;
+import uz.bek.click_up.entity.template.AbstractLongEntity;
 import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class CategoryUser extends AbstractUUIDEntity {
+public class CategoryUser extends AbstractLongEntity {
 
     @ManyToOne
     private Category category;
@@ -23,7 +24,7 @@ public class CategoryUser extends AbstractUUIDEntity {
     @ManyToOne
     private User member;
 
-    @Enumerated(value = EnumType.STRING)
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<TaskPermissions> taskPermissions;
+//    @Enumerated(value = EnumType.STRING)
+//    @ElementCollection(fetch = FetchType.LAZY)
+//    private List<TaskPermissions> taskPermissions;
 }

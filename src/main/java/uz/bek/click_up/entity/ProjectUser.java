@@ -23,7 +23,7 @@ public class ProjectUser extends AbstractUUIDEntity {
     @ManyToOne(optional = false)
     private User user;
 
-    @Enumerated(value = EnumType.STRING)
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<TaskPermissions> taskPermissions;
+//    @Enumerated(value = EnumType.STRING)
+//    @ElementCollection(fetch = FetchType.LAZY)
+//    private List<TaskPermissions> taskPermissions;
 }

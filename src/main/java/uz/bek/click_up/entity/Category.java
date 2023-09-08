@@ -13,7 +13,7 @@ import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "categoryTable")
 public class Category extends AbstractUUIDEntity {
 
     @Column(nullable = false)

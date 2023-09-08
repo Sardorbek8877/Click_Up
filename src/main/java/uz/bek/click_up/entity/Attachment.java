@@ -11,7 +11,7 @@ import uz.bek.click_up.entity.template.AbstractUUIDEntity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity()
 public class Attachment extends AbstractUUIDEntity {
 
     private String name;

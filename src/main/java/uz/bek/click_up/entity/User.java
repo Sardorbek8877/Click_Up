@@ -18,7 +18,7 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "users")
 public class User extends AbstractUUIDEntity implements UserDetails {
 
     private String fullName;
@@ -45,6 +45,8 @@ public class User extends AbstractUUIDEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private SystemRoleName systemRoleName;
+
+    private String emailCode;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,5 +77,12 @@ public class User extends AbstractUUIDEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public User(String fullName, String email, String password, SystemRoleName systemRoleName) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.systemRoleName = systemRoleName;
     }
 }

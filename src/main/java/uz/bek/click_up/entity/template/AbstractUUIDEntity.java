@@ -3,13 +3,11 @@ package uz.bek.click_up.entity.template;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
-import uz.bek.click_up.entity.User;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +15,13 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class AbstractUUIDEntity extends AbstractMainEntity{
 
+//    @GeneratedValue(generator = "uuid2")
+//    @JdbcTypeCode(SqlTypes.LONGVARCHAR)
+//    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private UUID id;
 }
