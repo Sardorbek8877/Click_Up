@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import uz.bek.click_up.entity.User;
 import uz.bek.click_up.entity.enums.SystemRoleName;
 import uz.bek.click_up.payload.ApiResponse;
-import uz.bek.click_up.payload.LoginDto;
 import uz.bek.click_up.payload.RegisterDto;
 import uz.bek.click_up.repository.UserRepository;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -30,8 +30,8 @@ public class AuthService implements UserDetailsService {
     JavaMailSender javaMailSender;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
     }
 
     public ApiResponse registerUser(RegisterDto registerDto) {
@@ -58,7 +58,7 @@ public class AuthService implements UserDetailsService {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setFrom("sardorbeksafarov8844@gmail.com");
             mailMessage.setTo(sendingEmail);
-            mailMessage.setSubject("Akkountni tasdiqlash");
+            mailMessage.setSubject("Activating account");
             mailMessage.setText(emailCode);
             javaMailSender.send(mailMessage);
             return true;
@@ -68,17 +68,17 @@ public class AuthService implements UserDetailsService {
     }
 
 
-//    public ApiResponse verifyEmail(String email, String emailCode) {
-//        Optional<User> optionalUser = userRepository.findByEmail(email);
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            if (emailCode.equals(user.getEmailCode())) {
-//                user.setEnabled(true);
-//                userRepository.save(user);
-//                return new ApiResponse("Acount aktivlashtirildi", true);
-//            }
-//            return new ApiResponse("Kod xato", false);
-//        }
-//        return new ApiResponse("Bunday user mavjud emas", false);
-//    }
+    public ApiResponse verifyEmail(String email, String emailCode) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (emailCode.equals(user.getEmailCode())) {
+                user.setEnabled(true);
+                userRepository.save(user);
+                return new ApiResponse("Account activated", true);
+            }
+            return new ApiResponse("Password is wrong", false);
+        }
+        return new ApiResponse("User not found", false);
+    }
 }
